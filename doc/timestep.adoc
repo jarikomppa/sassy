@@ -1,0 +1,114 @@
+Managing time is an important concept in audio synthesis. To make things simpler,
+Sassy has a step() function which solves a lot of issues. Understanding how to
+use it is probably the single biggest stumbling block, so let's look at it from
+various angles.
+
+=== Magic Explanation
+
+Instead of this:
+
+[source]
+--------------------------------------
+sin1(time() * (220 + sin1(time()))
+--------------------------------------
+
+Do this:
+
+[source]
+--------------------------------------
+sin1(step(220 + step(1)))
+--------------------------------------
+
+It just works.
+
+=== Mathy Explanation
+
+When you calculate time() * 220, you're calculating an absolute position in time based on a
+frequency. When the frequency changes, it's no longer possible to calculate the absolute position
+with a simple multiplication, and thus you jump into some other position in the waveform,
+causing discontinuity.
+
+Instead, we want to calculate how much we need to move forward - or step - in the waveform on a 
+per-sample basis.
+
+[source]
+--------------------------------------
+A1      a1 + dt() * (220 + sin1(time()))
+--------------------------------------
+
+We can perform that calculation in a cell that refers to itself. We take the previous value, and
+multiply the per-sample delta time by the desired frequency, which may change from one sample to
+the next. The result is a continious signal.
+
+Since this is a lot of hassle, step() does the same thing internally.
+
+=== What Goes Wrong With Time
+
+Let's assume our delta time is 1/44100. 
+
+[source]
+--------------------------------------
+sin1(time() * (220 + sin1(time()))
+--------------------------------------
+
+Looking at sample times from 0 to 5, we'll get the following results:
+
+.Time table
+|===
+|Time |Value
+
+|0.00000
+|0.01567170780598
+
+|0.00002
+|0.03133957651085
+
+|0.00005
+|0.046999757795547
+
+|0.00007
+|0.062648405216723
+
+|0.00009
+|0.078281675151505
+|===
+
+The values are increasing at a relatively slow pace. This is what we'd expect.
+
+Now, two hours later, we get these values:
+
+.Time table 2 hours later
+|===
+|Time |Value
+
+|7200.00000
+|0.998418952642947
+
+|7200.00002
+|-0.112243001455737
+
+|7200.00005
+|-0.985800517753224
+
+|7200.00007
+|0.223067350674027
+
+|7200.00009
+|0.960723151892004
+|===
+
+We are all over the place. What gives? Well, turns out, multiplying large numbers with small numbers gives larger results than multiplying small numbers with small numbers.
+
+Since we want the same results regardless of where we are in time, instead of calculating were we are from the beginning of time, we should calculate how much we want to move at each step. Thus, if we calculate this:
+
+[source]
+--------------------------------------
+sin1(step(220 + sin1(time()))
+--------------------------------------
+
+we get the same results regardless of how long we've been running.
+
+
+
+
+

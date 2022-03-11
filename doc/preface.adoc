@@ -1,0 +1,20 @@
+Preface
+-------
+
+I got interested in music and musical instruments about a decade ago,
+when my child got his first toy piano. Amazing what a little bit
+of boredom can do. A decade later I have a couple thousand euros worth 
+of keyboards, VSTs, and synthesizers. Oops.
+
+It was inevitable for me to look at modular synthesis. When I was
+finishing up the Atanua logic simulator project I pondered about using
+it as a basis for a synthesizer, but that never ended up anywhere.
+Back then I did get the idea of using a spreadsheet as the basis of
+audio generation.
+
+As I'm writing this, a month ago or so I played around with vcvrack,
+and got inspired to write my own. I played around with a couple graph 
+editors written for ImGui, and then figured that I could give that
+spreadsheet idea a shot.
+
+Two days later I had my first, minimally working version.

@@ -1,0 +1,13 @@
+About the author
+----------------
+
+Jari Komppa is an originally self-taught programmer with background in demoscene,
+game industry experience, and has made a ton of various hobby projects, including
+Galaxql, a sql tutorial where you modify a 3d rendered galaxy used by people around
+the world to learn sql; Atanua, a real time logic simulator for education which is
+still in use in some universities, and SoLoud, an audio engine for games that among
+other things shipped in Nintendo's mini NES and SNES.
+
+His web site, with more stuff about him than you'll
+ever want to know about, can be found at http://iki.fi/sol
+

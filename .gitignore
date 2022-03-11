@@ -1,0 +1,11 @@
+build/
+eval/
+*.bak
+doc/sassy.html
+doc/sassy.pdf
+doc/out/
+incoming/
+audioinit/x64/
+3rdpartytools/bin2coff.exe
+akwf/akwf_sorted.obj
+akwf/akwf_sorted.raw
