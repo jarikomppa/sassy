@@ -4,9 +4,19 @@
 
 Sassy is a virtual modular synthesizer with the interface of a spreadsheet.
 
+Binaries can be found at https://sol-hsa.itch.io/sassy
+
 The project is largely split into two parts: `eval`, which deals with evaluating the formulas in the cells, and `sassy`, the user interface. There's some overlap where eval handles things that are "pure math" whereas the interface can access data files and user interface elements.
 
 # Eval
+
+Eval contains code to evaluate the equations the user enters. The input strings are parsed into tokens, the tokens run through lexical analysis to make sure they make sense, then they're run through a simple constant folder, converted to postfix format and finally either interpreted or converted to x64 binary.
+
+```
+input -> parse -> lex -> opt -> postfix -> compute/jit
+```
+
+Note that the code is never converted to syntax tree or anything.
 
 ### eval.cpp
 `eval.cpp` contains unit tests for the formula evaluator. Most of the functions are stubbed, because eval itself does not know what they do. All of the functions are called both through both interpreted and JITted code paths and the results are compared.
@@ -21,11 +31,11 @@ Several functions may have the same name as long as the parameter list differs. 
 Parameter list consists of zero or more characters which may be `C`, `A`, `V`, `T` or `L`.
 
 ```
-{ "rowof",			"V",			1,	0,	0 },
-{ "columnof",		"V",			1,	0,	0 },
-{ "dt",				"",				1,  0,	0 },
-{ "step",			"C",			0,  0,	sizeof(double) },
-{ "allpass",		"CCC",			0,  sizeof(double),	 sizeof(int) },
+{ "rowof",     "V",    1,  0,              0 },
+{ "columnof",  "V",    1,  0,              0 },
+{ "dt",        "",     1,  0,              0 },
+{ "step",      "C",    0,  0,              sizeof(double) },
+{ "allpass",   "CCC",  0,  sizeof(double), sizeof(int) },
 ```
 
 `C` is the most common argument, which is anything that eventually collapses into a numeric value. So it can be a number or it can be an equation itself.
@@ -88,6 +98,10 @@ The process of adding new functions to sassy - one of the most fun things to do 
 5. Write help text in `sassy_help.cpp`
 
 # Interface
+
+![Screenshot](https://github.com/jarikomppa/sassy/blob/main/img/ss2.png?raw=true)
+
+The user interface is implemented with Dear Imgui, SDL2 and OpenGL. Native file i/o dialogs use tinyfiledialogs.
 
 ### sassy.h
 `sassy.h` contains todo list, structure definitions and prototypes for global data. All globals are prefixed with `g`, like `gSamplerate`. Alternative for globals would be to pass around some structure or (*shiver*) using a singleton, so deal with it.
