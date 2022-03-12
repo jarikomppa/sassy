@@ -1,6 +1,6 @@
 # Sassy Audio Spreadsheet
 
-![ScreenShot](https://raw.github.com/jarikomppa/sassy/blob/main/img/ss1.png)
+![Logo](https://github.com/jarikomppa/sassy/blob/main/img/logo.png?raw=true)
 
 Sassy is a virtual modular synthesizer with the interface of a spreadsheet.
 
