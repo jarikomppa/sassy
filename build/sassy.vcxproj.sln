@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sassy", "sassy.vcxproj", "{8F81C5F7-020A-4820-AA66-DD5930DAE8CE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eval", "..\eval\eval.vcxproj", "{3386EEC1-9C93-4653-B7C0-3BD4910416C9}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "audioinit", "..\audioinit\audioinit.vcxproj", "{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,14 +31,6 @@ Global
 		{3386EEC1-9C93-4653-B7C0-3BD4910416C9}.Release|x64.Build.0 = Release|x64
 		{3386EEC1-9C93-4653-B7C0-3BD4910416C9}.Release|x86.ActiveCfg = Release|Win32
 		{3386EEC1-9C93-4653-B7C0-3BD4910416C9}.Release|x86.Build.0 = Release|Win32
-		{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}.Debug|x64.ActiveCfg = Debug|x64
-		{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}.Debug|x64.Build.0 = Debug|x64
-		{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}.Debug|x86.ActiveCfg = Debug|Win32
-		{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}.Debug|x86.Build.0 = Debug|Win32
-		{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}.Release|x64.ActiveCfg = Release|x64
-		{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}.Release|x64.Build.0 = Release|x64
-		{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}.Release|x86.ActiveCfg = Release|Win32
-		{F9C02E0C-4360-4223-BFB3-16EFBB6EBA32}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
