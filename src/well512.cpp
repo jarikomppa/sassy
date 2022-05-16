@@ -11,7 +11,7 @@
 #include <stdlib.h>
 //#include <stdio.h>
 
-#include "WELL512.h"
+#include "well512.h"
 
 
 

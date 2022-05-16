@@ -22,6 +22,11 @@ namespace Xbyak
 // pow(2, 3/4.0) ~ 1.6817928305074290860622509524664297900800685247135690216264521719
 #define POW_2_3_4TH 1.6817928305074290860622509524664297900800685247135690216264521719
 
+#ifndef _WIN32
+#define sprintf_s snprintf
+#define _strdup strdup
+#endif
+
 extern const double note_to_freq[128];
 
 struct Op
