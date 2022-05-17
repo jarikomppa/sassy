@@ -1,4 +1,5 @@
 build/
+build-tmp/
 eval/
 *.bak
 doc/sassy.html
@@ -9,3 +10,6 @@ audioinit/x64/
 3rdpartytools/bin2coff.exe
 akwf/akwf_sorted.obj
 akwf/akwf_sorted.raw
+/sassy
+/sassy.exe
+/sassy.ini

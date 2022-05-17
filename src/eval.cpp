@@ -679,7 +679,7 @@ double eval(const char* s, int do_opt, int do_jit, int just_validate = 0)
 		{
 			double jres = jf(cellvals, cellvals);
 			bool nanres = isnan(res) != isnan(jres);
-			double magnitude = max(abs(jres), abs(res));
+			double magnitude = std::max(abs(jres), abs(res));
 			bool realres = abs(jres - res) > magnitude * 0.0001;
 			if (isnan(res)) realres = false;
 				
@@ -727,14 +727,14 @@ std::string func2call(int func)
 	return s;
 }
 
-WELL512 random;
+WELL512 gRandom;
 
 int fuzz()
 {
 	std::string s;
 	// - pick a random function	
 	// - build a func(v,v,v) sig
-	s = func2call(random.genrand_int31() % (FUNC_LAST - 1) + 1);
+	s = func2call(gRandom.genrand_int31() % (FUNC_LAST - 1) + 1);
 	// - replace v:s randomly with functions or values
 	bool changed = true;
 	int maxfunc = 20;
@@ -746,17 +746,17 @@ int fuzz()
 		{
 			if (s[i] == 'C' && maxfunc)
 			{
-				if ((random.genrand_int31() % 10) > 1)
+				if ((gRandom.genrand_int31() % 10) > 1)
 				{
-					d += func2call(random.genrand_int31() % (FUNC_LAST - 1) + 1);
+					d += func2call(gRandom.genrand_int31() % (FUNC_LAST - 1) + 1);
 				}
 				else
 				{
-					int braces = random.genrand_int31() & 1;
+					int braces = gRandom.genrand_int31() & 1;
 					if (braces)
 						d += "(";
 					d += "C";
-					switch (random.genrand_int31() % 4)
+					switch (gRandom.genrand_int31() % 4)
 					{
 					case 0: d += "+"; break;
 					case 1: d += "-"; break;
@@ -774,7 +774,7 @@ int fuzz()
 			if (s[i] == 'L' || (s[i] == 'C' && !maxfunc))
 			{
 				char temp[16];
-				sprintf(temp, "%3.5f", random.genrand_int31() * 0.001f);
+				sprintf(temp, "%3.5f", gRandom.genrand_int31() * 0.001f);
 				d += temp;
 				changed = true;
 			}
@@ -782,7 +782,7 @@ int fuzz()
 			if (s[i] == 'V')
 			{
 				char temp[16];
-				sprintf(temp, "%c%d", 'a'+ random.genrand_int31() %26, (random.genrand_int31() %32) + 1);
+				sprintf(temp, "%c%d", 'a'+ gRandom.genrand_int31() %26, (gRandom.genrand_int31() %32) + 1);
 				d += temp;
 				changed = true;
 			}
@@ -790,7 +790,7 @@ int fuzz()
 			if (s[i] == 'A')
 			{
 				char temp[16];
-				sprintf(temp, "%c%d:%c%d", 'a' + random.genrand_int31() % 26, (random.genrand_int31() % 32) + 1, 'a' + random.genrand_int31() % 26, (random.genrand_int31() % 32) + 1);
+				sprintf(temp, "%c%d:%c%d", 'a' + gRandom.genrand_int31() % 26, (gRandom.genrand_int31() % 32) + 1, 'a' + gRandom.genrand_int31() % 26, (gRandom.genrand_int31() % 32) + 1);
 				d += temp;
 				changed = true;
 			}
@@ -1115,7 +1115,7 @@ int main(int parc, char** pars)
 	int cycle = 0;
 	int mismatch = 0;
 	int seed = GetTickCount();
-	random.init_genrand(seed);
+	gRandom.init_genrand(seed);
 	while (1)
 	{
 		cycle++;

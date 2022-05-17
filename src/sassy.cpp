@@ -404,7 +404,9 @@ void sdl2_audiomixer(void* , Uint8* stream, int len)
         memset(stream, 0, len);
         return;
     }
+#ifdef _WIN32
     _controlfp(_DN_FLUSH, _MCW_DN);
+#endif
     /*
     SetThreadAffinityMask(GetCurrentThread(), 0xfe); // Avoid code #1
     SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
@@ -1032,7 +1034,9 @@ extern int editor_callback(ImGuiInputTextCallbackData* data);
 int main(int, char**)
 {
     printf("Initializing..\n");
+#ifdef _WIN32
     _controlfp(_DN_FLUSH, _MCW_DN);
+#endif
 
     gCelldata = new Celldata[MAXVAR];
     gCellvalue = new double[MAXVAR];

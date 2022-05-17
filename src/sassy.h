@@ -36,7 +36,7 @@ some functions:
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include "eval.h"
-#include "rtmidi.h"
+#include "RtMidi.h"
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl2.h"
