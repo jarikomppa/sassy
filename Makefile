@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
-# Makefile for FluidPlug #
-# ---------------------- #
+# Makefile for sassy #
+# ------------------ #
 # Created by falkTX
 #
 

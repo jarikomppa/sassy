@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
-# Makefile for DPF #
-# ---------------- #
+# Makefile for sassy #
+# ------------------ #
 # Created by falkTX
 #
 
