@@ -26,7 +26,17 @@ LINK_FLAGS      += $(shell pkg-config --libs sdl2) -pthread
 
 ifeq ($(MACOS),true)
 BUILD_CXX_FLAGS += -D__MACOSX_CORE__
+# NOTE: If you have arm64/x86_64 mismatch linker problems, then 
+# try running: make clean; arch -x86_64 make
+# force x86_64 for JIT
+BUILD_CXX_FLAGS += -arch x86_64
+# reset LINK_FLAGS so we can ensure we don't pick up arm64 libs from /opt/
+LINK_FLAGS      = -arch x86_64
+LINK_FLAGS      += -L/usr/local/lib -lSDL2
 LINK_FLAGS      += -framework CoreMIDI
+LINK_FLAGS      += -framework OpenGL
+LINK_FLAGS      += -framework CoreFoundation
+LINK_FLAGS      += -framework CoreAudio
 else ifeq ($(WINDOWS),true)
 BUILD_CXX_FLAGS += -D__WINDOWS_MM__
 LINK_FLAGS      += -lwinmm

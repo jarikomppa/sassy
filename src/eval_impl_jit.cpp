@@ -1,3 +1,13 @@
+// eval_impl_jit.cpp
+
+#if defined(__APPLE__)
+// Avoid a name-conflict between our 'label' function and the
+// one defined in this header file.
+#define label IGNORE_LABEL
+#include <sys/ucred.h>
+#undef label
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
